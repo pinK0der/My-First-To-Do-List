@@ -1,0 +1,57 @@
+﻿@model IEnumerable<To_Do_List.Models.Event>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple to do list</title>
+</head>
+<body>
+    
+        <p><a asp-action="AddNewEvent">Add future event</a></p>
+   
+    <h1>Your events</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Future Event |</th>
+                <th>Date |</th>
+                <th>State |</th>
+                @{
+                //<th>Lifter`s ID</th>
+                }
+                <!-- Додайте інші заголовки колонок -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EventToDo</td>
+                    <td>@item.EventDate</td>
+                    @if (!item.IsFinished)
+                        {
+                        <td>Not done</td>
+                    }
+                    else
+                    {
+                        <td>Done</td>
+                    }
+                    <td>
+                        <form asp-controller="Home" asp-action="ChangeState" method="post" asp-route-id="@item.Id">
+                            <input type="submit" value="Change to Done" />
+                        </form>
+                    </td>
+                    
+                    <td>
+                    <form asp-controller="Home" asp-action="DeleteEvent" method="post" asp-route-id="@item.Id">
+                    <input type="submit" value="Delete event" />
+            </form>
+                        </td>
+                    <!-- Додайте інші колонки -->
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

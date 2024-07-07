@@ -1,0 +1,16 @@
+﻿@model To_Do_List.Models.Event;
+
+<h2>Adding Event to do</h2>
+<form asp-action="AddNewEvent" asp-controller="home">
+    <p>
+        <label asp-for="EventToDo">Write about your future event</label><br />
+        <input type="text" asp-for="EventToDo" />
+    </p>
+    <p>
+        <label asp-for="EventDate">Write date of your event</label><br />
+        <input type="date" asp-for="EventDate" />
+    </p>
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+</form>
